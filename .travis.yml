@@ -31,6 +31,7 @@ addons:
 
   homebrew:
     taps: PX4/homebrew-px4
+    update: true
     packages:
        - fftw
        - gcc-arm-none-eabi
