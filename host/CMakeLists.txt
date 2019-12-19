@@ -16,10 +16,10 @@ include(LibraryUtils)
 # Compilation flags
 # -----------------------------------------------------
 
-if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQUAL "AppleClang")
 
 	set(CMAKE_C_FLAGS_RELEASE "-O3")
-	set(CMAKE_C_FLAGS_DEBUG "-g3 -O0")
+	set(CMAKE_C_FLAGS_DEBUG "-g3 -Og")
 	set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 		
 elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
@@ -37,11 +37,6 @@ elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 	# disable deprecated API headers
 	add_definitions(-DWIN32_LEAN_AND_MEAN)
 
-elseif("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_C_COMPILER_ID}" STREQUAL "AppleClang")
-
-	set(CMAKE_C_FLAGS_RELEASE "-O3")
-	set(CMAKE_C_FLAGS_DEBUG "-g3 -O0")
-	set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 else()
 
 	message(WARNING "Unknown compiler ${CMAKE_C_COMPILER_ID}, don't know how to set CFLAGS")
